@@ -12,7 +12,7 @@ public final class TestDataUtil {
     public static CampusEntity createTestCampusA() {
         CampusEntity campus = new CampusEntity();
         campus.setName("TestNameA");
-        campus.setAddress("TestAdressA");
+        campus.setAddress("TestAddressA");
         campus.setParkingCapacity(200);
         campus.setRooms(new ArrayList<>());
         campus.setNumberOfRooms(0);
@@ -22,7 +22,7 @@ public final class TestDataUtil {
     public static CampusDto createTestCampusDtoA() {
         CampusDto dto = new CampusDto();
         dto.setName("TestNameA");
-        dto.setAddress("TestAdressA");
+        dto.setAddress("TestAddressA");
         dto.setParkingCapacity(200);
         dto.setRooms(new ArrayList<>());
         dto.setNumberOfRooms(0);
@@ -32,15 +32,25 @@ public final class TestDataUtil {
     public static CampusEntity createTestCampusB() {
         CampusEntity campus = new CampusEntity();
         campus.setName("TestNameB");
-        campus.setAddress("TestAdressB");
+        campus.setAddress("TestAddressB");
         campus.setParkingCapacity(100);
         return campus;
+    }
+
+    public static CampusDto createTestCampusDtoB() {
+        CampusDto dto = new CampusDto();
+        dto.setName("TestNameB");
+        dto.setAddress("TestAddressB");
+        dto.setParkingCapacity(200);
+        dto.setRooms(new ArrayList<>());
+        dto.setNumberOfRooms(0);
+        return dto;
     }
 
     public static CampusEntity createTestCampusC() {
         CampusEntity campus = new CampusEntity();
         campus.setName("TestNameC");
-        campus.setAddress("TestAdressC");
+        campus.setAddress("TestAddressC");
         campus.setParkingCapacity(50);
         return campus;
     }
@@ -48,7 +58,7 @@ public final class TestDataUtil {
     public static RoomEntity createTestRoomA(CampusEntity campus) {
         RoomEntity room = new RoomEntity();
         room.setId(1L);
-        room.setName("TestNaamA");
+        room.setName("TestNameA");
         room.setType("TestTypeA");
         room.setCapacity(50);
         room.setFloorNumber(2);
@@ -59,7 +69,7 @@ public final class TestDataUtil {
     public static RoomEntity createTestRoomB(CampusEntity campus) {
         RoomEntity room = new RoomEntity();
         room.setId(2L);
-        room.setName("TestNaamB");
+        room.setName("TestNameB");
         room.setType("TestTypeB");
         room.setCapacity(20);
         room.setFloorNumber(1);
@@ -70,7 +80,7 @@ public final class TestDataUtil {
     public static RoomEntity createTestRoomC(CampusEntity campus) {
         RoomEntity room = new RoomEntity();
         room.setId(3L);
-        room.setName("TestNaamC");
+        room.setName("TestNameC");
         room.setType("TestTypeC");
         room.setCapacity(30);
         room.setFloorNumber(0);
