@@ -2,8 +2,8 @@ package be.ucll.examen.controllers;
 
 import be.ucll.examen.TestDataUtil;
 import be.ucll.examen.domain.dto.CampusDto;
-import be.ucll.examen.domain.entities.CampusEntity;
-import be.ucll.examen.services.Impl.CampusServiceImpl;
+import be.ucll.examen.domain.entities.Campus;
+import be.ucll.examen.services.impl.CampusServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class CampusControllerIntegrationTests {
 
     @Test
     public void testThatCreateCampusReturnsHttpStatus201Created() throws Exception {
-        CampusEntity testCampus = TestDataUtil.createTestCampusA();
+        Campus testCampus = TestDataUtil.createTestCampusA();
         String campusJson = objectMapper.writeValueAsString(testCampus);
         mockMvc.perform(
                 MockMvcRequestBuilders.post("/campus")
@@ -51,7 +51,7 @@ public class CampusControllerIntegrationTests {
 
     @Test
     public void testThatCreateCampusReturnsSavedCampus() throws Exception {
-        CampusEntity testCampus = TestDataUtil.createTestCampusA();
+        Campus testCampus = TestDataUtil.createTestCampusA();
         String campusJson = objectMapper.writeValueAsString(testCampus);
         mockMvc.perform(
                 MockMvcRequestBuilders.post("/campus")
@@ -74,7 +74,7 @@ public class CampusControllerIntegrationTests {
 
     @Test
     public void testThatFindAllCampusesReturnsListOfCampuses() throws Exception {
-        CampusEntity testCampus = TestDataUtil.createTestCampusA();
+        Campus testCampus = TestDataUtil.createTestCampusA();
         campusService.create(testCampus);
 
         mockMvc.perform(
@@ -89,7 +89,7 @@ public class CampusControllerIntegrationTests {
 
     @Test
     public void testThatFindCampusByIdReturnsHttpStatus200WhenCampusExists() throws Exception {
-        CampusEntity testCampus = TestDataUtil.createTestCampusA();
+        Campus testCampus = TestDataUtil.createTestCampusA();
         campusService.create(testCampus);
 
         mockMvc.perform(
@@ -108,7 +108,7 @@ public class CampusControllerIntegrationTests {
 
     @Test
     public void testThatFindCampusByIdReturnsCampusWhenCampusExists() throws Exception {
-        CampusEntity testCampus = TestDataUtil.createTestCampusA();
+        Campus testCampus = TestDataUtil.createTestCampusA();
         campusService.create(testCampus);
 
         mockMvc.perform(
@@ -123,8 +123,8 @@ public class CampusControllerIntegrationTests {
 
     @Test
     public void testThatupdateCampusReturnsHttpStatus200WhenCampusExists() throws Exception {
-        CampusEntity testCampus = TestDataUtil.createTestCampusA();
-        CampusEntity savedCampus = campusService.create(testCampus);
+        Campus testCampus = TestDataUtil.createTestCampusA();
+        Campus savedCampus = campusService.create(testCampus);
 
         CampusDto testCampusDto = TestDataUtil.createTestCampusDtoA();
         String campusDtoJson = objectMapper.writeValueAsString(testCampusDto);
@@ -148,8 +148,8 @@ public class CampusControllerIntegrationTests {
 
     @Test
     public void testThatFullUpdateUpdatesExistingCampus() throws Exception {
-        CampusEntity testCampus = TestDataUtil.createTestCampusA();
-        CampusEntity savedCampus = campusService.create(testCampus);
+        Campus testCampus = TestDataUtil.createTestCampusA();
+        Campus savedCampus = campusService.create(testCampus);
         CampusDto testCampusDto = TestDataUtil.createTestCampusDtoB();
 
         String campusDtoJson = objectMapper.writeValueAsString(testCampusDto);
@@ -178,8 +178,8 @@ public class CampusControllerIntegrationTests {
 
     @Test
     public void testThatDeleteCampusByIdReturnsHttpStatus204WhenCampusExists() throws Exception {
-        CampusEntity testCampus = TestDataUtil.createTestCampusA();
-        CampusEntity savedCampus = campusService.create(testCampus);
+        Campus testCampus = TestDataUtil.createTestCampusA();
+        Campus savedCampus = campusService.create(testCampus);
         mockMvc.perform(
                 MockMvcRequestBuilders.delete("/campus/" + savedCampus.getName())
                         .contentType(MediaType.APPLICATION_JSON)

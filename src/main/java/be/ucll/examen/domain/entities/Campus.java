@@ -6,11 +6,10 @@ import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "campus")
-public class CampusEntity {
+public class Campus {
 
     // DATA FIELDS
     @Id
@@ -20,13 +19,13 @@ public class CampusEntity {
     private Integer parkingCapacity;
     @OneToMany(mappedBy = "campus", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<RoomEntity> rooms = new ArrayList<>();
+    private List<Room> rooms = new ArrayList<>();
     @Column(name = "number_of_rooms")
     private Integer numberOfRooms;
 
 
     // CONSTRUCTORS
-    public CampusEntity() {}
+    public Campus() {}
 
 
     // GETTERS AND SETTERS
@@ -39,8 +38,8 @@ public class CampusEntity {
     public Integer getParkingCapacity() { return parkingCapacity; }
     public void setParkingCapacity(Integer parkingCapacity) { this.parkingCapacity = parkingCapacity; }
 
-    public List<RoomEntity> getRooms() { return rooms; }
-    public void setRooms(List<RoomEntity> rooms) { this.rooms = rooms; }
+    public List<Room> getRooms() { return rooms; }
+    public void setRooms(List<Room> rooms) { this.rooms = rooms; }
 
     public Integer getNumberOfRooms() { return numberOfRooms; }
     public void setNumberOfRooms(Integer numberOfRooms) { this.numberOfRooms = numberOfRooms; }

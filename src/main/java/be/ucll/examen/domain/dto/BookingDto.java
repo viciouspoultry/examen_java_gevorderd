@@ -2,7 +2,7 @@ package be.ucll.examen.domain.dto;
 
 import com.fasterxml.jackson.annotation.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,11 +13,11 @@ public class BookingDto {
 
     @JsonProperty("time_from")
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-    private Date timeFrom;
+    private LocalDateTime timeFrom;
 
     @JsonProperty("time_to")
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-    private Date timeTo;
+    private LocalDateTime timeTo;
     @JsonProperty("user_comment")
     private String userComment;
     @JsonProperty("booking_capacity")
@@ -36,11 +36,11 @@ public class BookingDto {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public Date getTimeFrom() { return timeFrom; }
-    public void setTimeFrom(Date timeFrom) { this.timeFrom = timeFrom; }
+    public LocalDateTime getTimeFrom() { return timeFrom; }
+    public void setTimeFrom(LocalDateTime timeFrom) { this.timeFrom = timeFrom; }
 
-    public Date getTimeTo() { return timeTo; }
-    public void setTimeTo(Date timeTo) { this.timeTo = timeTo; }
+    public LocalDateTime getTimeTo() { return timeTo; }
+    public void setTimeTo(LocalDateTime timeTo) { this.timeTo = timeTo; }
 
     public String getUserComment() { return userComment; }
     public void setUserComment(String userComment) { this.userComment = userComment; }

@@ -1,9 +1,9 @@
 package be.ucll.examen.controllers;
 
 import be.ucll.examen.domain.dto.BookingDto;
-import be.ucll.examen.domain.entities.BookingEntity;
+import be.ucll.examen.domain.entities.Booking;
 import be.ucll.examen.mappers.Mapper;
-import be.ucll.examen.services.Impl.BookingServiceImpl;
+import be.ucll.examen.services.impl.BookingServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 @RestController
 public class BookingController {
     private final BookingServiceImpl bookingService;
-    private final Mapper<BookingEntity, BookingDto> bookingMapper;
+    private final Mapper<Booking, BookingDto> bookingMapper;
 
     @Autowired
     public BookingController(BookingServiceImpl bookingService,
-                             Mapper<BookingEntity, BookingDto> bookingMapper) {
+                             Mapper<Booking, BookingDto> bookingMapper) {
         this.bookingService = bookingService;
         this.bookingMapper = bookingMapper;
     }
@@ -28,7 +28,7 @@ public class BookingController {
     @PostMapping("/users/{user-id}/bookings")
     public ResponseEntity<BookingDto> createBooking(@PathVariable("user-id") Long userId,
                                                     @RequestBody BookingDto dto) {
-        BookingEntity bookingToCreate = bookingMapper.mapFrom(dto);
+        Booking bookingToCreate = bookingMapper.mapFrom(dto);
         BookingDto response = bookingMapper.mapTo(bookingService.create(userId, bookingToCreate));
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -55,7 +55,7 @@ public class BookingController {
     public ResponseEntity<BookingDto> updateBooking(@PathVariable("user-id") Long userId,
                                                     @PathVariable("booking-id") Long bookingId,
                                                     @RequestBody BookingDto dto) {
-        BookingEntity updatedBooking = bookingMapper.mapFrom(dto);
+        Booking updatedBooking = bookingMapper.mapFrom(dto);
         BookingDto response = bookingMapper.mapTo(bookingService.update(userId, bookingId, updatedBooking));
         return ResponseEntity.ok(response);
     }
@@ -69,7 +69,7 @@ public class BookingController {
     }
 
     @DeleteMapping("/users/{user-id}/bookings/{booking-id}")
-    public ResponseEntity deleteBooking(@PathVariable("user-id") Long userId,
+    public ResponseEntity DeleteBookingById(@PathVariable("user-id") Long userId,
                                         @PathVariable("booking-id") Long bookingId) {
         bookingService.deleteById(userId, bookingId);
         return ResponseEntity

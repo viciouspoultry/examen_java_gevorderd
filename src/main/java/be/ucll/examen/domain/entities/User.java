@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class UserEntity {
+public class User {
 
     // DATA FIELDS
     @Id
@@ -23,11 +23,11 @@ public class UserEntity {
     private String email;
     @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
     @JsonManagedReference(value = "user-booking")
-    private List<BookingEntity> bookings = new ArrayList<>();
+    private List<Booking> bookings = new ArrayList<>();
 
 
     // CONSTRUCTORS
-    public UserEntity() {}
+    public User() {}
 
 
     // GETTERS AND SETTERS
@@ -46,6 +46,6 @@ public class UserEntity {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
-    public List<BookingEntity> getBookings() { return bookings; }
-    public void setBookings(List<BookingEntity> bookings) { this.bookings = bookings; }
+    public List<Booking> getBookings() { return bookings; }
+    public void setBookings(List<Booking> bookings) { this.bookings = bookings; }
 }

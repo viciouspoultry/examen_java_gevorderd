@@ -1,14 +1,14 @@
 package be.ucll.examen.services;
 
-import be.ucll.examen.domain.entities.UserEntity;
+import be.ucll.examen.domain.entities.User;
 
 import java.util.List;
 
 public interface UserService {
-    UserEntity create(UserEntity user);
-    List<UserEntity> findAll();
-    UserEntity findById(Long userId);
-    UserEntity update(Long userId, UserEntity user);
+    User create(User user);
+    List<User> findByNameContaining(String nameMatches);
+    User findById(Long userId);
+    User update(Long userId, User user);
     void deleteById(Long userId);
     void deleteAll();
 }

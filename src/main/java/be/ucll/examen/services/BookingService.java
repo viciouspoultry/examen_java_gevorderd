@@ -1,13 +1,13 @@
 package be.ucll.examen.services;
 
-import be.ucll.examen.domain.entities.BookingEntity;
+import be.ucll.examen.domain.entities.Booking;
 
 import java.util.List;
 
 public interface BookingService {
-    BookingEntity create(Long userId, BookingEntity booking);
-    List<BookingEntity> findAll(Long userId);
-    BookingEntity findById(Long userId, Long bookingId);
-    BookingEntity update(Long userId, Long bookingId, BookingEntity booking);
+    Booking create(Long userId, Booking booking);
+    List<Booking> findAll(Long userId);
+    Booking findById(Long userId, Long bookingId);
+    Booking update(Long userId, Long bookingId, Booking booking);
     void deleteById(Long userId, Long bookingId);
 }

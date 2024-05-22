@@ -1,16 +1,16 @@
 package be.ucll.examen;
 
 import be.ucll.examen.domain.dto.CampusDto;
-import be.ucll.examen.domain.entities.CampusEntity;
-import be.ucll.examen.domain.entities.RoomEntity;
+import be.ucll.examen.domain.entities.Campus;
+import be.ucll.examen.domain.entities.Room;
 
 import java.util.ArrayList;
 
 public final class TestDataUtil {
     private TestDataUtil(){}
 
-    public static CampusEntity createTestCampusA() {
-        CampusEntity campus = new CampusEntity();
+    public static Campus createTestCampusA() {
+        Campus campus = new Campus();
         campus.setName("TestNameA");
         campus.setAddress("TestAddressA");
         campus.setParkingCapacity(200);
@@ -29,8 +29,8 @@ public final class TestDataUtil {
         return dto;
     }
 
-    public static CampusEntity createTestCampusB() {
-        CampusEntity campus = new CampusEntity();
+    public static Campus createTestCampusB() {
+        Campus campus = new Campus();
         campus.setName("TestNameB");
         campus.setAddress("TestAddressB");
         campus.setParkingCapacity(100);
@@ -47,16 +47,16 @@ public final class TestDataUtil {
         return dto;
     }
 
-    public static CampusEntity createTestCampusC() {
-        CampusEntity campus = new CampusEntity();
+    public static Campus createTestCampusC() {
+        Campus campus = new Campus();
         campus.setName("TestNameC");
         campus.setAddress("TestAddressC");
         campus.setParkingCapacity(50);
         return campus;
     }
 
-    public static RoomEntity createTestRoomA(CampusEntity campus) {
-        RoomEntity room = new RoomEntity();
+    public static Room createTestRoomA(Campus campus) {
+        Room room = new Room();
         room.setId(1L);
         room.setName("TestNameA");
         room.setType("TestTypeA");
@@ -66,8 +66,8 @@ public final class TestDataUtil {
         return room;
     }
 
-    public static RoomEntity createTestRoomB(CampusEntity campus) {
-        RoomEntity room = new RoomEntity();
+    public static Room createTestRoomB(Campus campus) {
+        Room room = new Room();
         room.setId(2L);
         room.setName("TestNameB");
         room.setType("TestTypeB");
@@ -77,8 +77,8 @@ public final class TestDataUtil {
         return room;
     }
 
-    public static RoomEntity createTestRoomC(CampusEntity campus) {
-        RoomEntity room = new RoomEntity();
+    public static Room createTestRoomC(Campus campus) {
+        Room room = new Room();
         room.setId(3L);
         room.setName("TestNameC");
         room.setType("TestTypeC");

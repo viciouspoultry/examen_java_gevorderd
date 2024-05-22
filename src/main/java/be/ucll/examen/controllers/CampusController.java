@@ -1,9 +1,9 @@
 package be.ucll.examen.controllers;
 
 import be.ucll.examen.domain.dto.CampusDto;
-import be.ucll.examen.domain.entities.CampusEntity;
+import be.ucll.examen.domain.entities.Campus;
 import be.ucll.examen.mappers.Mapper;
-import be.ucll.examen.services.Impl.CampusServiceImpl;
+import be.ucll.examen.services.impl.CampusServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +15,11 @@ import java.util.stream.Collectors;
 @RestController
 public class CampusController {
     private final CampusServiceImpl campusService;
-
-    private final Mapper<CampusEntity, CampusDto> campusMapper;
+    private final Mapper<Campus, CampusDto> campusMapper;
 
     @Autowired
     public CampusController(CampusServiceImpl campusService,
-                            Mapper<CampusEntity, CampusDto> campusMapper) {
+                            Mapper<Campus, CampusDto> campusMapper) {
         this.campusService = campusService;
         this.campusMapper = campusMapper;
     }
@@ -28,7 +27,7 @@ public class CampusController {
 
     @PostMapping("/campus")
     public ResponseEntity<CampusDto> createCampus(@RequestBody CampusDto dto) {
-        CampusEntity campusToCreate = campusMapper.mapFrom(dto);
+        Campus campusToCreate = campusMapper.mapFrom(dto);
         CampusDto response = campusMapper.mapTo(campusService.create(campusToCreate));
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -53,7 +52,7 @@ public class CampusController {
     @PutMapping("/campus/{campus-id}")
     public ResponseEntity<CampusDto> updateCampus(@PathVariable("campus-id") String campusName,
                                                   @RequestBody CampusDto dto) {
-        CampusEntity updatedCampus = campusMapper.mapFrom(dto);
+        Campus updatedCampus = campusMapper.mapFrom(dto);
         CampusDto response = campusMapper.mapTo(campusService.update(campusName, updatedCampus));
         return ResponseEntity.ok(response);
     }

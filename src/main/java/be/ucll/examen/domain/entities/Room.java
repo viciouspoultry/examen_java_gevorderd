@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "rooms")
-public class RoomEntity {
+public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,13 +22,13 @@ public class RoomEntity {
     @ManyToOne
     @JoinColumn(name = "campus_name")
     @JsonBackReference
-    private CampusEntity campus;
+    private Campus campus;
     @ManyToMany(mappedBy = "bookedRooms")
-    private Set<BookingEntity> bookedBy = new HashSet<>();
+    private Set<Booking> bookedBy = new HashSet<>();
 
 
     // CONSTRUCTORS
-    public RoomEntity() {}
+    public Room() {}
 
 
     // GETTERS AND SETTERS
@@ -47,16 +47,16 @@ public class RoomEntity {
     public Integer getFloorNumber() { return floorNumber; }
     public void setFloorNumber(Integer floorNumber) { this.floorNumber = floorNumber; }
 
-    public CampusEntity getCampus() { return campus; }
-    public void setCampus(CampusEntity campus) { this.campus = campus; }
+    public Campus getCampus() { return campus; }
+    public void setCampus(Campus campus) { this.campus = campus; }
 
-    public Set<BookingEntity> getBookedBy() { return bookedBy; }
-    public void setBookedBy(Set<BookingEntity> bookedBy) { this.bookedBy = bookedBy; }
+    public Set<Booking> getBookedBy() { return bookedBy; }
+    public void setBookedBy(Set<Booking> bookedBy) { this.bookedBy = bookedBy; }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof RoomEntity that)) return false;
+        if (!(o instanceof Room that)) return false;
         return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(type, that.type) && Objects.equals(capacity, that.capacity) && Objects.equals(floorNumber, that.floorNumber) && Objects.equals(campus, that.campus) && Objects.equals(bookedBy, that.bookedBy);
     }
 

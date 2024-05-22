@@ -1,6 +1,6 @@
-package be.ucll.examen.services.Impl;
+package be.ucll.examen.services.impl;
 
-import be.ucll.examen.domain.entities.CampusEntity;
+import be.ucll.examen.domain.entities.Campus;
 import be.ucll.examen.repositories.CampusRepository;
 import be.ucll.examen.services.CampusService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ public class CampusServiceImpl implements CampusService {
     }
 
     @Override
-    public CampusEntity create(CampusEntity campusToCreate) {
+    public Campus create(Campus campusToCreate) {
         return campusRepository.save(campusToCreate);
     }
 
     @Override
-    public List<CampusEntity> findAll() {
+    public List<Campus> findAll() {
         return StreamSupport.stream(campusRepository
                         .findAll()
                         .spliterator(),
@@ -37,14 +37,14 @@ public class CampusServiceImpl implements CampusService {
     }
 
     @Override
-    public CampusEntity findById(String campusName) {
+    public Campus findById(String campusName) {
         return campusRepository.findById(campusName)
                 .orElseThrow(() -> new NoSuchElementException("No campus found with id value of '" + campusName + "'."));
     }
 
     @Override
-    public CampusEntity update(String campusName, CampusEntity updatedCampus) {
-        CampusEntity campusToUpdate = campusRepository.findById(campusName)
+    public Campus update(String campusName, Campus updatedCampus) {
+        Campus campusToUpdate = campusRepository.findById(campusName)
                 .orElseThrow(() -> new NoSuchElementException("No campus found with id value of '" + campusName + "'."));
         updatedCampus.setName(campusToUpdate.getName());
         return campusRepository.save(updatedCampus);
@@ -52,7 +52,7 @@ public class CampusServiceImpl implements CampusService {
 
     @Override
     public void deleteById(String campusName) {
-        CampusEntity campusToDelete = campusRepository.findById(campusName)
+        Campus campusToDelete = campusRepository.findById(campusName)
                 .orElseThrow(() -> new NoSuchElementException("No campus found with id value of '" + campusName + "'."));
         campusRepository.delete(campusToDelete);
     }

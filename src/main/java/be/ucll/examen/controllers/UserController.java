@@ -1,9 +1,9 @@
 package be.ucll.examen.controllers;
 
 import be.ucll.examen.domain.dto.UserDto;
-import be.ucll.examen.domain.entities.UserEntity;
+import be.ucll.examen.domain.entities.User;
 import be.ucll.examen.mappers.Mapper;
-import be.ucll.examen.services.Impl.UserServiceImpl;
+import be.ucll.examen.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
 @RestController
 public class UserController {
     private final UserServiceImpl userService;
-    private final Mapper<UserEntity, UserDto> userMapper;
+    private final Mapper<User, UserDto> userMapper;
 
 
     @Autowired
     public UserController(UserServiceImpl userService,
-                          Mapper<UserEntity, UserDto> userMapper) {
+                          Mapper<User, UserDto> userMapper) {
         this.userService = userService;
         this.userMapper = userMapper;
     }
@@ -28,7 +28,7 @@ public class UserController {
 
     @PostMapping("/users")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto dto) {
-        UserEntity userToCreate = userMapper.mapFrom(dto);
+        User userToCreate = userMapper.mapFrom(dto);
         UserDto response = userMapper.mapTo(userService.create(userToCreate));
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public ResponseEntity<List<UserDto>> findUsers(@RequestParam(value = "nameMatches", required = false) String nameMatches) {
+    public ResponseEntity<List<UserDto>> findUsersByNameContaining(@RequestParam(value = "nameMatches", required = false) String nameMatches) {
         List<UserDto> response = userService.findByNameContaining(nameMatches)
                 .stream()
                 .map(userMapper::mapTo)
@@ -53,7 +53,7 @@ public class UserController {
     @PutMapping("/users/{user-id}")
     public ResponseEntity<UserDto> updateUser(@PathVariable("user-id") Long userId,
                                               @RequestBody UserDto dto) {
-        UserEntity updatedUser = userMapper.mapFrom(dto);
+        User updatedUser = userMapper.mapFrom(dto);
         UserDto response = userMapper.mapTo(userService.update(userId, updatedUser));
         return ResponseEntity.ok(response);
     }
