@@ -5,7 +5,6 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -52,16 +51,4 @@ public class Room {
 
     public Set<Booking> getBookedBy() { return bookedBy; }
     public void setBookedBy(Set<Booking> bookedBy) { this.bookedBy = bookedBy; }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Room that)) return false;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(type, that.type) && Objects.equals(capacity, that.capacity) && Objects.equals(floorNumber, that.floorNumber) && Objects.equals(campus, that.campus) && Objects.equals(bookedBy, that.bookedBy);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, type, capacity, floorNumber, campus, bookedBy);
-    }
 }

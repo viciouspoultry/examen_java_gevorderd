@@ -20,6 +20,8 @@ public class Booking {
     private LocalDateTime timeTo;
     @Column(name = "user_comment")
     private String userComment;
+
+    @Column(name ="booking_capacity")
     private Integer bookingCapacity;
     @ManyToOne
     @JoinColumn(name = "user_id")

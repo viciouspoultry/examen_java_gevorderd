@@ -70,7 +70,7 @@ public class BookingController {
 
     @DeleteMapping("/users/{user-id}/bookings/{booking-id}")
     public ResponseEntity DeleteBookingById(@PathVariable("user-id") Long userId,
-                                        @PathVariable("booking-id") Long bookingId) {
+                                            @PathVariable("booking-id") Long bookingId) {
         bookingService.deleteById(userId, bookingId);
         return ResponseEntity
                 .noContent()

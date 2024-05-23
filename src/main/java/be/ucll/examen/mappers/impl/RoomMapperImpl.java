@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RoomMapperImpl implements Mapper<Room, RoomDto> {
 
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     @Autowired
     public RoomMapperImpl(ModelMapper modelMapper) {

@@ -83,8 +83,8 @@ public class RoomController {
     }
 
     @DeleteMapping("/campus/{campus-id}/rooms/{room-id}")
-    public ResponseEntity deleteRoom(@PathVariable("campus-id") String campusName,
-                                     @PathVariable("room-id") Long roomId) {
+    public ResponseEntity deleteRoomById(@PathVariable("campus-id") String campusName,
+                                         @PathVariable("room-id") Long roomId) {
         roomService.deleteById(campusName, roomId);
         return ResponseEntity
                 .noContent()

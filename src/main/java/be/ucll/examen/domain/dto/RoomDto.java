@@ -1,7 +1,11 @@
 package be.ucll.examen.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class RoomDto {
@@ -23,8 +27,8 @@ public class RoomDto {
 //
 //    org.hibernate.LazyInitializationException: failed to lazily initialize a collection, could not initialize proxy - no Session
 
-//    @JsonIgnore
-//    private Set<BookingDto> bookedBy = new HashSet<>();
+    @JsonIgnore
+    private Set<BookingDto> bookedBy = new HashSet<>();
 
 
     // CONSTRUCTORS
@@ -50,6 +54,6 @@ public class RoomDto {
     public CampusDto getCampus() { return campus; }
     public void setCampus(CampusDto campus) { this.campus = campus; }
 
-//    public Set<BookingDto> getBookedBy() { return bookedBy; }
-//    public void setBookedBy(Set<BookingDto> bookedBy) { this.bookedBy = bookedBy; }
+    public Set<BookingDto> getBookedBy() { return bookedBy; }
+    public void setBookedBy(Set<BookingDto> bookedBy) { this.bookedBy = bookedBy; }
 }

@@ -9,11 +9,8 @@ import be.ucll.examen.validators.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.*;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -22,15 +19,12 @@ import java.util.NoSuchElementException;
 public class RoomServiceImpl implements RoomService {
     private final RoomRepository roomRepository;
     private final CampusServiceImpl campusService;
-    private final EntityManager entityManager;
 
     @Autowired
     public RoomServiceImpl(RoomRepository roomRepository,
-                           CampusServiceImpl campusService,
-                           EntityManager entityManager) {
+                           CampusServiceImpl campusService) {
         this.roomRepository = roomRepository;
         this.campusService = campusService;
-        this.entityManager = entityManager;
     }
 
     @Override
@@ -57,13 +51,6 @@ public class RoomServiceImpl implements RoomService {
             throw new IllegalArgumentException("The end time query parameter is missing.");
         }
         Campus foundCampus = campusService.findById(campusName);
-//        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-//        CriteriaQuery<Room> cq = cb.createQuery(Room.class);
-//        Root<Room> room = cq.from(Room.class);
-//        Join<Booking, Room> bookingRoomJoin = room.join("bookedBy");
-//        Predicate predicateForCampusName = cb.equal(room.get("campus"), foundCampus.getName());
-//        Predicate predicateForMinNumberOfSeats = cb.greaterThanOrEqualTo(room.get("capacity"), minNumberOfSeats);
-
         return roomRepository.findByQuery(foundCampus.getName(), availableFrom, availableUntil, minNumberOfSeats);
     }
 

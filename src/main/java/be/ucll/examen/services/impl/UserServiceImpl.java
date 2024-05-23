@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -37,24 +36,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findByNameContaining(String nameMatches) {
-        List<User> queryResult = new ArrayList<>();
-
-        if(nameMatches == null || nameMatches.isEmpty()) {
-            queryResult = StreamSupport.stream(userRepository
+        if(nameMatches == null) {
+            return StreamSupport.stream(userRepository
                                     .findAll()
                                     .spliterator(),
                             false)
                     .collect(Collectors.toList());
         }
         else {
-            queryResult.addAll(userRepository.findByFirstNameContaining(nameMatches));
-            queryResult.addAll(userRepository.findByLastNameContaining(nameMatches));
-            // remove duplicates from queryResult
-            queryResult = queryResult.stream()
-                    .distinct()
-                    .collect(Collectors.toList());
+            return userRepository.findByNameMatches(nameMatches);
         }
-        return queryResult;
     }
 
     @Override

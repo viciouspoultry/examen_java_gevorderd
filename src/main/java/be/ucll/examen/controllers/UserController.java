@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public ResponseEntity<List<UserDto>> findUsersByNameContaining(@RequestParam(value = "nameMatches", required = false) String nameMatches) {
+    public ResponseEntity<List<UserDto>> findUsersByNameContaining(@RequestParam(required = false) String nameMatches) {
         List<UserDto> response = userService.findByNameContaining(nameMatches)
                 .stream()
                 .map(userMapper::mapTo)

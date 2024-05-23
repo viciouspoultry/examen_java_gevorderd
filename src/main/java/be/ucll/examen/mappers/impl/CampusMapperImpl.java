@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CampusMapperImpl implements Mapper<Campus, CampusDto> {
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     @Autowired
     public CampusMapperImpl(ModelMapper modelMapper) {

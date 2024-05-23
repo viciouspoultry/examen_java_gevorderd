@@ -122,7 +122,7 @@ public class CampusControllerIntegrationTests {
     }
 
     @Test
-    public void testThatupdateCampusReturnsHttpStatus200WhenCampusExists() throws Exception {
+    public void testThatUpdateCampusReturnsHttpStatus200WhenCampusExists() throws Exception {
         Campus testCampus = TestDataUtil.createTestCampusA();
         Campus savedCampus = campusService.create(testCampus);
 
@@ -136,7 +136,7 @@ public class CampusControllerIntegrationTests {
     }
 
     @Test
-    public void testThatupdateCampusReturnsHttpStatus404WhenCampusDoesNotExist() throws Exception {
+    public void testThatUpdateCampusReturnsHttpStatus404WhenCampusDoesNotExist() throws Exception {
         CampusDto testCampusDto = TestDataUtil.createTestCampusDtoA();
         String campusDtoJson = objectMapper.writeValueAsString(testCampusDto);
         mockMvc.perform(

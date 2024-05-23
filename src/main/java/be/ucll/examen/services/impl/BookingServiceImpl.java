@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -73,7 +72,8 @@ public class BookingServiceImpl implements BookingService {
 
     public Booking addRoomToBooking(Long userId, Long bookingId, Long roomId) {
         Room roomToAdd = roomService.findById(roomId);
-        Booking bookingToUpdate = this.findById(userId, bookingId);
+        Booking bookingToUpdate =  this.findById(userId, bookingId);
+
         // CONSTRAINT: Een lokaal mag binnen je reservatie maar 1 keer worden gereserveerd.
         // CONSTRAINT: Een lokaal mag niet reeds gereserveerd zijn door een andere reservatie.
         if(!bookingToUpdate.getBookedRooms().contains(roomToAdd) && checkAvailability(bookingToUpdate, roomToAdd)) {

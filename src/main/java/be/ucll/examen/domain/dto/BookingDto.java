@@ -10,11 +10,9 @@ public class BookingDto {
 
     // DATA FIELDS
     private Long id;
-
     @JsonProperty("time_from")
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime timeFrom;
-
     @JsonProperty("time_to")
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime timeTo;
