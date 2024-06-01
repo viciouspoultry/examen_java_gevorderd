@@ -17,12 +17,12 @@ public class UserMapperImpl implements Mapper<User, UserDto> {
     }
 
     @Override
-    public UserDto mapTo(User user) {
+    public UserDto toDto(User user) {
         return modelMapper.map(user, UserDto.class);
     }
 
     @Override
-    public User mapFrom(UserDto userDto) {
+    public User toEntity(UserDto userDto) {
         return modelMapper.map(userDto, User.class);
     }
 }

@@ -2,7 +2,7 @@ package be.ucll.examen.mappers;
 
 public interface Mapper<A, B> {
 
-    B mapTo(A a);
+    B toDto(A a);
 
-    A mapFrom(B b);
+    A toEntity(B b);
 }

@@ -28,8 +28,8 @@ public class UserController {
 
     @PostMapping("/users")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto dto) {
-        User userToCreate = userMapper.mapFrom(dto);
-        UserDto response = userMapper.mapTo(userService.create(userToCreate));
+        User userToCreate = userMapper.toEntity(dto);
+        UserDto response = userMapper.toDto(userService.create(userToCreate));
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
@@ -39,22 +39,22 @@ public class UserController {
     public ResponseEntity<List<UserDto>> findUsersByNameContaining(@RequestParam(required = false) String nameMatches) {
         List<UserDto> response = userService.findByNameContaining(nameMatches)
                 .stream()
-                .map(userMapper::mapTo)
+                .map(userMapper::toDto)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/users/{user-id}")
     public ResponseEntity<UserDto> findUserById(@PathVariable("user-id") Long userId) {
-        UserDto response = userMapper.mapTo(userService.findById(userId));
+        UserDto response = userMapper.toDto(userService.findById(userId));
         return ResponseEntity.ok(response);
     }
 
     @PutMapping("/users/{user-id}")
     public ResponseEntity<UserDto> updateUser(@PathVariable("user-id") Long userId,
                                               @RequestBody UserDto dto) {
-        User updatedUser = userMapper.mapFrom(dto);
-        UserDto response = userMapper.mapTo(userService.update(userId, updatedUser));
+        User updatedUser = userMapper.toEntity(dto);
+        UserDto response = userMapper.toDto(userService.update(userId, updatedUser));
         return ResponseEntity.ok(response);
     }
 

@@ -37,7 +37,7 @@ public class CampusControllerIntegrationTests {
     }
 
     @Test
-    public void testThatCreateCampusReturnsHttpStatus201Created() throws Exception {
+    public void createCampus_returnsHttpStatus201Created() throws Exception {
         Campus testCampus = TestDataUtil.createTestCampusA();
         String campusJson = objectMapper.writeValueAsString(testCampus);
         mockMvc.perform(
@@ -50,7 +50,7 @@ public class CampusControllerIntegrationTests {
     }
 
     @Test
-    public void testThatCreateCampusReturnsSavedCampus() throws Exception {
+    public void createCampus_returnsSavedCampus() throws Exception {
         Campus testCampus = TestDataUtil.createTestCampusA();
         String campusJson = objectMapper.writeValueAsString(testCampus);
         mockMvc.perform(
@@ -65,7 +65,7 @@ public class CampusControllerIntegrationTests {
     }
 
     @Test
-    public void testThatFindAllCampusesReturnsHttpStatus200() throws Exception {
+    public void findAllCampuses_returnsHttpStatus200() throws Exception {
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/campus")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -73,7 +73,7 @@ public class CampusControllerIntegrationTests {
     }
 
     @Test
-    public void testThatFindAllCampusesReturnsListOfCampuses() throws Exception {
+    public void findAllCampuses_returnsListOfCampuses() throws Exception {
         Campus testCampus = TestDataUtil.createTestCampusA();
         campusService.create(testCampus);
 
@@ -88,7 +88,7 @@ public class CampusControllerIntegrationTests {
     }
 
     @Test
-    public void testThatFindCampusByIdReturnsHttpStatus200WhenCampusExists() throws Exception {
+    public void findCampusById_returnsHttpStatus200_campusExists() throws Exception {
         Campus testCampus = TestDataUtil.createTestCampusA();
         campusService.create(testCampus);
 
@@ -99,7 +99,7 @@ public class CampusControllerIntegrationTests {
     }
 
     @Test
-    public void testThatFindCampusByIdReturnsHttpStatus404WhenCampusDoesNotExist() throws Exception {
+    public void findCampusById_returnsHttpStatus404_campusDoesNotExist() throws Exception {
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/campus/TestNameA")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -107,7 +107,7 @@ public class CampusControllerIntegrationTests {
     }
 
     @Test
-    public void testThatFindCampusByIdReturnsCampusWhenCampusExists() throws Exception {
+    public void findCampusById_returnsCampus_campusExists() throws Exception {
         Campus testCampus = TestDataUtil.createTestCampusA();
         campusService.create(testCampus);
 
@@ -122,7 +122,7 @@ public class CampusControllerIntegrationTests {
     }
 
     @Test
-    public void testThatUpdateCampusReturnsHttpStatus200WhenCampusExists() throws Exception {
+    public void updateCampus_returnsHttpStatus200_CampusExists() throws Exception {
         Campus testCampus = TestDataUtil.createTestCampusA();
         Campus savedCampus = campusService.create(testCampus);
 
@@ -136,7 +136,7 @@ public class CampusControllerIntegrationTests {
     }
 
     @Test
-    public void testThatUpdateCampusReturnsHttpStatus404WhenCampusDoesNotExist() throws Exception {
+    public void updateCampus_returnsHttpStatus404_campusDoesNotExist() throws Exception {
         CampusDto testCampusDto = TestDataUtil.createTestCampusDtoA();
         String campusDtoJson = objectMapper.writeValueAsString(testCampusDto);
         mockMvc.perform(
@@ -147,7 +147,7 @@ public class CampusControllerIntegrationTests {
     }
 
     @Test
-    public void testThatFullUpdateUpdatesExistingCampus() throws Exception {
+    public void fullUpdate_updatesExistingCampus() throws Exception {
         Campus testCampus = TestDataUtil.createTestCampusA();
         Campus savedCampus = campusService.create(testCampus);
         CampusDto testCampusDto = TestDataUtil.createTestCampusDtoB();
@@ -167,7 +167,7 @@ public class CampusControllerIntegrationTests {
     }
 
     @Test
-    public void testThatDeleteCampusByIdReturnsHttpStatus404WhenCampusDoesNotExist() throws Exception {
+    public void deleteCampusById_returnsHttpStatus404_campusDoesNotExist() throws Exception {
         mockMvc.perform(
                 MockMvcRequestBuilders.delete("/campus/TestNameA")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -177,7 +177,7 @@ public class CampusControllerIntegrationTests {
     }
 
     @Test
-    public void testThatDeleteCampusByIdReturnsHttpStatus204WhenCampusExists() throws Exception {
+    public void deleteCampusById_returnsHttpStatus204_CampusExists() throws Exception {
         Campus testCampus = TestDataUtil.createTestCampusA();
         Campus savedCampus = campusService.create(testCampus);
         mockMvc.perform(

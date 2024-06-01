@@ -17,12 +17,12 @@ public class CampusMapperImpl implements Mapper<Campus, CampusDto> {
     }
 
     @Override
-    public CampusDto mapTo(Campus campus) {
+    public CampusDto toDto(Campus campus) {
         return modelMapper.map(campus, CampusDto.class);
     }
 
     @Override
-    public Campus mapFrom(CampusDto campusDto) {
+    public Campus toEntity(CampusDto campusDto) {
         return modelMapper.map(campusDto, Campus.class);
     }
 }

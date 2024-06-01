@@ -35,8 +35,8 @@ public class RoomController {
     @PostMapping("/campus/{campus-id}/rooms")
     public ResponseEntity<RoomDto> createRoom(@PathVariable("campus-id") String campusName,
                                               @RequestBody RoomDto dto) {
-        Room roomToCreate = roomMapper.mapFrom(dto);
-        RoomDto response = roomMapper.mapTo(roomService.create(campusName, roomToCreate));
+        Room roomToCreate = roomMapper.toEntity(dto);
+        RoomDto response = roomMapper.toDto(roomService.create(campusName, roomToCreate));
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
@@ -50,7 +50,7 @@ public class RoomController {
         List<RoomDto> response = roomService
                 .findByQuery(campusName, availableFrom, availableUntil, minNumberOfSeats)
                 .stream()
-                .map(roomMapper::mapTo)
+                .map(roomMapper::toDto)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(response);
     }
@@ -58,7 +58,7 @@ public class RoomController {
     @GetMapping("/campus/{campus-id}/rooms/{room-id}")
     public ResponseEntity<RoomDto> getRoomById(@PathVariable("campus-id") String campusName,
                                                @PathVariable("room-id") Long roomId) {
-        RoomDto response = roomMapper.mapTo(roomService.findById(campusName, roomId));
+        RoomDto response = roomMapper.toDto(roomService.findById(campusName, roomId));
         return ResponseEntity.ok(response);
     }
 
@@ -68,7 +68,7 @@ public class RoomController {
         List<BookingDto> response = roomService
                 .findBookings(campusName, roomId)
                 .stream()
-                .map(bookingMapper::mapTo)
+                .map(bookingMapper::toDto)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(response);
     }
@@ -77,8 +77,8 @@ public class RoomController {
     public ResponseEntity<RoomDto> updateRoom(@PathVariable("campus-id") String campusName,
                                               @PathVariable("room-id") Long roomId,
                                               @RequestBody RoomDto dto) {
-        Room updatedRoom = roomMapper.mapFrom(dto);
-        RoomDto response = roomMapper.mapTo(roomService.update(campusName, roomId, updatedRoom));
+        Room updatedRoom = roomMapper.toEntity(dto);
+        RoomDto response = roomMapper.toDto(roomService.update(campusName, roomId, updatedRoom));
         return ResponseEntity.ok(response);
     }
 

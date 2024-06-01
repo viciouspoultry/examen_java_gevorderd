@@ -20,7 +20,7 @@ public class CampusServiceImplTests {
 
 
     @Test
-    public void testThatCreateMethodSavesACampus() {
+    public void createMethod_SavesCampus() {
         Campus campus = TestDataUtil.createTestCampusA();
 
         when(campusRepository.save(campus)).thenReturn(campus);
@@ -31,5 +31,4 @@ public class CampusServiceImplTests {
 
         verify(campusRepository, times(1)).save(campus);
     }
-
 }

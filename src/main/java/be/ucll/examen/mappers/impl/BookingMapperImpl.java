@@ -17,12 +17,12 @@ public class BookingMapperImpl implements Mapper<Booking, BookingDto> {
     }
 
     @Override
-    public BookingDto mapTo(Booking booking) {
+    public BookingDto toDto(Booking booking) {
         return modelMapper.map(booking, BookingDto.class);
     }
 
     @Override
-    public Booking mapFrom(BookingDto bookingDto) {
+    public Booking toEntity(BookingDto bookingDto) {
         return modelMapper.map(bookingDto, Booking.class);
     }
 }

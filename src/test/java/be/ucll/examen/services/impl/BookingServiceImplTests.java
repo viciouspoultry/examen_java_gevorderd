@@ -29,7 +29,7 @@ public class BookingServiceImplTests {
     private RoomServiceImpl roomService;
 
     @Test
-    public void createMethod_SavesBooking_UserExists() {
+    public void createMethod_savesBooking_userExists() {
         User user = TestDataUtil.createTestUser();
         Booking bookingToSave = TestDataUtil.createTestBooking(user);
         Booking savedBooking = TestDataUtil.createTestBooking(user);
@@ -52,7 +52,7 @@ public class BookingServiceImplTests {
     }
 
     @Test
-    public void createMethod_ThrowsNoSuchElementException_UserDoesNotExist() {
+    public void createMethod_throwsNoSuchElementException_userDoesNotExist() {
         User user = TestDataUtil.createTestUser();
         Booking bookingToSave = TestDataUtil.createTestBooking(user);
 
@@ -65,7 +65,7 @@ public class BookingServiceImplTests {
     }
 
     @Test
-    public void createMethod_ThrowsIllegalArgumentException_TimeFromIsLaterThanTimeTo() {
+    public void createMethod_throwsIllegalArgumentException_timeFromIsLaterThanTimeTo() {
         User user = TestDataUtil.createTestUser();
         Booking bookingToSave = TestDataUtil.createTestBooking(user);
         bookingToSave.setTimeFrom(LocalDateTime.of(2024, Month.OCTOBER, 20, 16, 00, 00, 000000));
@@ -80,7 +80,7 @@ public class BookingServiceImplTests {
     }
 
     @Test
-    public void createMethod_ThrowsIllegalArgumentException_BookingIsInThePast() {
+    public void createMethod_throwsIllegalArgumentException_bookingIsInThePast() {
         User user = TestDataUtil.createTestUser();
         Booking bookingToSave = TestDataUtil.createTestBooking(user);
         bookingToSave.setTimeFrom(LocalDateTime.of(1987, Month.OCTOBER, 20, 12, 00, 00, 000000));

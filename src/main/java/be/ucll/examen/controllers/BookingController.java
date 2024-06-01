@@ -28,8 +28,8 @@ public class BookingController {
     @PostMapping("/users/{user-id}/bookings")
     public ResponseEntity<BookingDto> createBooking(@PathVariable("user-id") Long userId,
                                                     @RequestBody BookingDto dto) {
-        Booking bookingToCreate = bookingMapper.mapFrom(dto);
-        BookingDto response = bookingMapper.mapTo(bookingService.create(userId, bookingToCreate));
+        Booking bookingToCreate = bookingMapper.toEntity(dto);
+        BookingDto response = bookingMapper.toDto(bookingService.create(userId, bookingToCreate));
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
@@ -39,7 +39,7 @@ public class BookingController {
     public ResponseEntity<List<BookingDto>> findAllBookings(@PathVariable("user-id") Long userId) {
         List<BookingDto> response = bookingService.findAll(userId)
                 .stream()
-                .map(bookingMapper::mapTo)
+                .map(bookingMapper::toDto)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(response);
     }
@@ -47,7 +47,7 @@ public class BookingController {
     @GetMapping("/users/{user-id}/bookings/{booking-id}")
     public ResponseEntity<BookingDto> getBookingById(@PathVariable("user-id") Long userId,
                                                      @PathVariable("booking-id") Long bookingId) {
-        BookingDto response = bookingMapper.mapTo(bookingService.findById(userId, bookingId));
+        BookingDto response = bookingMapper.toDto(bookingService.findById(userId, bookingId));
         return ResponseEntity.ok(response);
     }
 
@@ -55,8 +55,8 @@ public class BookingController {
     public ResponseEntity<BookingDto> updateBooking(@PathVariable("user-id") Long userId,
                                                     @PathVariable("booking-id") Long bookingId,
                                                     @RequestBody BookingDto dto) {
-        Booking updatedBooking = bookingMapper.mapFrom(dto);
-        BookingDto response = bookingMapper.mapTo(bookingService.update(userId, bookingId, updatedBooking));
+        Booking updatedBooking = bookingMapper.toEntity(dto);
+        BookingDto response = bookingMapper.toDto(bookingService.update(userId, bookingId, updatedBooking));
         return ResponseEntity.ok(response);
     }
 
@@ -64,7 +64,7 @@ public class BookingController {
     public ResponseEntity<BookingDto> addRoomToBooking(@PathVariable("user-id") Long userId,
                                                        @PathVariable("booking-id") Long bookingId,
                                                        @PathVariable("room-id") Long roomId) {
-        BookingDto response = bookingMapper.mapTo(bookingService.addRoomToBooking(userId, bookingId, roomId));
+        BookingDto response = bookingMapper.toDto(bookingService.addRoomToBooking(userId, bookingId, roomId));
         return ResponseEntity.ok(response);
     }
 

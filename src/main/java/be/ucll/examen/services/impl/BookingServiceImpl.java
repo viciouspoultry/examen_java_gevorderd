@@ -64,6 +64,12 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Booking update(Long userId, Long bookingId, Booking updatedBooking) {
+        // CONSTRAINT: Start van de reservatie moet voor het einde van de reservatie liggen
+        Validator.startTimeIsBeforeEndTime(updatedBooking.getTimeFrom(), updatedBooking.getTimeTo());
+
+        // CONSTRAINT: Je mag niet in het verleden reserveren
+        Validator.bookingIsNotInThePast(updatedBooking);
+
         Booking bookingToUpdate = this.findById(userId, bookingId);
         updatedBooking.setId(bookingToUpdate.getId());
         updatedBooking.setUser(userService.findById(userId));

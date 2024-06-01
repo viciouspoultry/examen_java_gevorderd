@@ -27,8 +27,8 @@ public class CampusController {
 
     @PostMapping("/campus")
     public ResponseEntity<CampusDto> createCampus(@RequestBody CampusDto dto) {
-        Campus campusToCreate = campusMapper.mapFrom(dto);
-        CampusDto response = campusMapper.mapTo(campusService.create(campusToCreate));
+        Campus campusToCreate = campusMapper.toEntity(dto);
+        CampusDto response = campusMapper.toDto(campusService.create(campusToCreate));
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
@@ -38,22 +38,22 @@ public class CampusController {
     public ResponseEntity<List<CampusDto>> findAllCampuses() {
         List<CampusDto> response = campusService.findAll()
                 .stream()
-                .map(campusMapper::mapTo)
+                .map(campusMapper::toDto)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/campus/{campus-id}")
     public ResponseEntity<CampusDto> findCampusById(@PathVariable("campus-id") String campusName) {
-        CampusDto response = campusMapper.mapTo(campusService.findById(campusName));
+        CampusDto response = campusMapper.toDto(campusService.findById(campusName));
         return ResponseEntity.ok(response);
     }
 
     @PutMapping("/campus/{campus-id}")
     public ResponseEntity<CampusDto> updateCampus(@PathVariable("campus-id") String campusName,
                                                   @RequestBody CampusDto dto) {
-        Campus updatedCampus = campusMapper.mapFrom(dto);
-        CampusDto response = campusMapper.mapTo(campusService.update(campusName, updatedCampus));
+        Campus updatedCampus = campusMapper.toEntity(dto);
+        CampusDto response = campusMapper.toDto(campusService.update(campusName, updatedCampus));
         return ResponseEntity.ok(response);
     }
 

@@ -18,12 +18,12 @@ public class RoomMapperImpl implements Mapper<Room, RoomDto> {
     }
 
     @Override
-    public RoomDto mapTo(Room room) {
+    public RoomDto toDto(Room room) {
         return modelMapper.map(room, RoomDto.class);
     }
 
     @Override
-    public Room mapFrom(RoomDto roomDto) {
+    public Room toEntity(RoomDto roomDto) {
         return modelMapper.map(roomDto, Room.class);
     }
 }
